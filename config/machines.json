@@ -1,0 +1,36 @@
+{
+    "Hypervlab": {
+        "Machines": [
+            {
+                "Name": "DC01",
+                "Type": "WINSRV2022STANDARD",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "2GB",
+                "VHDSizeBytes": "30GB",
+                "Generation": "2",
+                "Processors": "2"
+            },
+            {
+                "Name": "Win11Test",
+                "Type": "WIN11ENTERPRISE",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "4GB",
+                "VHDSizeBytes": "30GB",
+                "Generation": "2",
+                "Processors": "4"
+            },
+            {
+                "Name": "Win10Test",
+                "Type": "WIN10ENTERPRISE",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "4GB",
+                "VHDSizeBytes": "30GB",
+                "Generation": "2",
+                "Processors": "4"
+            }
+        ]
+    },
+    "Devlab": {
+        "Machines": []
+    }
+}

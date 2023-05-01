@@ -1,0 +1,28 @@
+{
+    "vmloc": "c:\\vms",
+    "medialoc": "c:\\vms\\media",
+    "vhdloc": "c:\\vms\\vhd",
+    "VMSwitch": "LABLAN",
+    "OperatingSystems": {
+        "templates": [
+            {
+                "Name": "Windows Server 2022",
+                "ID": "WINSRV2022STANDARD",
+                "MediaLoc": "someloc",
+                "URL": "https://go.microsoft.com/fwlink/p/?LinkID=2195280&clcid=0x409&culture=en-us&country=US"
+            },
+            {
+                "Name": "Windows 11 Enterprise",
+                "ID": "WIN11ENTERPRISE",
+                "MediaLoc": "someloc",
+                "URL": "https://go.microsoft.com/fwlink/p/?LinkID=2206317&clcid=0x809&culture=en-gb&country=GB"
+            },
+            {
+                "Name": "Windows 10 Enterprise",
+                "ID": "WIN10ENTERPRISE",
+                "MediaLoc": "someloc",
+                "URL": "https://go.microsoft.com/fwlink/p/?LinkID=2195404&clcid=0x809&culture=en-gb&country=GB"
+            }
+        ]
+    }
+}
