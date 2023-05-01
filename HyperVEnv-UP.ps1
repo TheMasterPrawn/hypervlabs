@@ -26,6 +26,16 @@ foreach ($machine in $machines) {
     $machine
     $vmloc = "$($configs.vmloc)\$($machine.Name)"
     $vhdPath = "$($configs.vhdloc)\$($machine.Name)\$($machine.Name).vhdx"
+    if(Test-Path -path $vhdPath)
+    {
+        try {
+            Remove-item -path $vhdPath -Force -Confirm:$false
+        }
+        catch {
+            Write-Host "Unable to remove VHD at $vhdPath" -ForegroundColor DarkRed
+            $_
+        }
+    }
     New-VM -Name $machine.Name -Path $vmloc -MemoryStartupBytes ($machine.MemoryStartupBytes / 1) `
         -NewVHDPath $vhdPath -NewVHDSizeBytes ($machine.VHDSizeBytes / 1) -SwitchName $machine.SwitchName `
         -Generation $machine.Generation 

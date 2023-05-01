@@ -1,5 +1,10 @@
 {
     "Hypervlab": {
+        "DomainName": "megacorp.ie",
+        "StartIPRange": "172.16.0.160",
+        "EndIPRange": "172.16.0.190",
+        "TTL": " 01:00:00",
+        "IPScopeName": "megacorp",
         "Machines": [
             {
                 "Name": "DC01",
@@ -8,7 +13,8 @@
                 "MemoryStartupBytes": "2GB",
                 "VHDSizeBytes": "30GB",
                 "Generation": "2",
-                "Processors": "2"
+                "Processors": "2",
+                "Role": "DomainController"
             },
             {
                 "Name": "Win11Test",
@@ -17,7 +23,8 @@
                 "MemoryStartupBytes": "4GB",
                 "VHDSizeBytes": "30GB",
                 "Generation": "2",
-                "Processors": "4"
+                "Processors": "4",
+                "Role": "Client"
             },
             {
                 "Name": "Win10Test",
@@ -26,7 +33,8 @@
                 "MemoryStartupBytes": "4GB",
                 "VHDSizeBytes": "30GB",
                 "Generation": "2",
-                "Processors": "4"
+                "Processors": "4",
+                "Role": "Client"
             }
         ]
     },
