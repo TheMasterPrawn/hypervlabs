@@ -1,8 +1,7 @@
 [CmdletBinding()]
 param (
-    [Parameter()][bool]$parallel = $true,
     [Parameter()][string]$machineConfigs = "",
-    [Parameter()][string]$lab = "Hypervlab"
+    [Parameter()][string]$lab = "base" # get from machineConfigs 
 )
 function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
 
@@ -24,10 +23,10 @@ $machines = $machines.$lab.Machines
 
 foreach ($machine in $machines) {
     $machine
-    $vmloc = "$($configs.vmloc)\$($machine.Name)"
-    $vhdPath = "$($configs.vhdloc)\$($machine.Name)\$($machine.Name).vhdx"
-    if(Test-Path -path $vhdPath)
-    {
+    $hyperVMachineName = "$lab-$($machine.Name)"
+    $vmloc = "$($configs.vmloc)\$($hyperVMachineName)"
+    $vhdPath = "$($configs.vhdloc)\$($hyperVMachineName)\$($hyperVMachineName).vhdx"
+    if (Test-Path -path $vhdPath) {
         try {
             Remove-item -path $vhdPath -Force -Confirm:$false
         }
@@ -36,24 +35,31 @@ foreach ($machine in $machines) {
             $_
         }
     }
-    New-VM -Name $machine.Name -Path $vmloc -MemoryStartupBytes ($machine.MemoryStartupBytes / 1) `
+    
+    New-VM -Name $hyperVMachineName -Path $vmloc -MemoryStartupBytes ($machine.MemoryStartupBytes / 1) `
         -NewVHDPath $vhdPath -NewVHDSizeBytes ($machine.VHDSizeBytes / 1) -SwitchName $machine.SwitchName `
         -Generation $machine.Generation 
 
-    Set-VMProcessor -VMName $machine.Name -Count $machine.Processors
+    Set-VMMemory $hyperVMachineName -DynamicMemoryEnabled $false
+    Set-VMProcessor -VMName $hyperVMachineName -Count $machine.Processors
     $medialoc = "$($config.medialoc)\$($machine.Type).iso"
-    Add-VMDVDDrive -VMName $machine.Name -Path $medialoc
+    Add-VMDVDDrive -VMName $hyperVMachineName -Path $medialoc
+
+    # Start and stop behaviour
+    Set-VM $hyperVMachineName -AutomaticStartAction Nothing 
+    Set-VM $hyperVMachineName -AutomaticStopAction TurnOff
+
+    Set-VM $hyperVMachineName -Notes "$($machine.username) : $($machine.password)"
 
     # add keys and enable TPM
-    Update-VMVersion -VMName $machine.Name -Confirm:$false
+    Update-VMVersion -VMName $hyperVMachineName -Confirm:$false
     
-    if($null -eq (Get-HgsGuardian "UntrustedGuardian"))
-    {
+    if ($null -eq (Get-HgsGuardian "UntrustedGuardian")) {
         New-HgsGuardian -Name "UntrustedGuardian" -GenerateCertificates 
     }
     
     $owner = Get-HgsGuardian "UntrustedGuardian"
     $kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
-    Set-VMKeyProtector -VMName $machine.Name -KeyProtector $kp.RawData
-    Enable-VMTPM -VMName $machine.Name
+    Set-VMKeyProtector -VMName $hyperVMachineName -KeyProtector $kp.RawData
+    Enable-VMTPM -VMName $hyperVMachineName
 }

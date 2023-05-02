@@ -38,7 +38,44 @@
             }
         ]
     },
-    "Devlab": {
-        "Machines": []
+    "base": {
+        "Machines": [
+            {
+                "Name": "WINSRV22",
+                "Type": "WINSRV2022STANDARD",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "4GB",
+                "VHDSizeBytes": "80GB",
+                "Generation": "2",
+                "Processors": "2",
+                "Role": "DomainController",
+                "UserName": "labmanager",
+                "Password": "Labmanager2023!!"
+            },
+            {
+                "Name": "Win11Base",
+                "Type": "WIN11ENTERPRISE",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "4GB",
+                "VHDSizeBytes": "120GB",
+                "Generation": "2",
+                "Processors": "4",
+                "Role": "Client",
+                "UserName": "labmanager",
+                "Password": "Labmanager2023!!"
+            },
+            {
+                "Name": "Win10Base",
+                "Type": "WIN10ENTERPRISE",
+                "SwitchName": "LAB",
+                "MemoryStartupBytes": "4GB",
+                "VHDSizeBytes": "120GB",
+                "Generation": "2",
+                "Processors": "4",
+                "Role": "Client",
+                "UserName": "labmanager",
+                "Password": "Labmanager2023!!"
+            }
+        ]
     }
 }
