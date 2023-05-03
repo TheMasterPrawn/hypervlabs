@@ -48,6 +48,7 @@ foreach ($machine in $machines) {
     # Start and stop behaviour
     Set-VM $hyperVMachineName -AutomaticStartAction Nothing 
     Set-VM $hyperVMachineName -AutomaticStopAction TurnOff
+    Set-VM $hyperVMachineName -AutomaticCheckpointsEnabled $false
 
     Set-VM $hyperVMachineName -Notes "$($machine.username) : $($machine.password)"
 
