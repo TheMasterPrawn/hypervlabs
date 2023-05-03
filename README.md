@@ -2,9 +2,7 @@
 
 # windows 
 
-Windows 10 Enteprise Downloads
-
-https://www.microsoft.com/en-us/evalcenter/download-windows-10-enterprise
+Running Get-WindowsISO.ps1 will get win 10, 11 and Server 2022 evals into c:\vm\media
 
 # networking
 
@@ -15,6 +13,11 @@ Then right click your network adapter and share it with the new Internal Network
 
 https://www.microsoft.com/en-us/evalcenter/download-windows-admin-center
 
-# TODO
+# usage
 
-Need to set local credential of each machine admin as a known cred to be able to admin them
+Open the template VM
+Follow out of box setup experience
+Create a local account with no password
+In eleavated powershell paste in Install-Tools.ps1 and run
+In eleavated powershell paste in New-LocalAdmin.ps1 and run
+In eleavated powershell paste in SysPrepIt.ps1 and run
