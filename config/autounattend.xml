@@ -17,16 +17,13 @@
 			publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<UserData>
 				<ProductKey>
-					<Key>VPMWD-PVNRR-79WJ9-VVJQC-3YH2G</Key>
+					<Key>WBYGB-TFMJ2-4DKK7-MYRGK-DYH2G</Key>
 				</ProductKey>
 				<AcceptEula>true</AcceptEula>
 			</UserData>
 		</component>
 	</settings>
 	<settings pass="generalize"></settings>
-	<settings pass="specialize"></settings>
-	<settings pass="auditSystem"></settings>
-	<settings pass="auditUser"></settings>
 	<settings pass="oobeSystem">
 		<component name="Microsoft-Windows-International-Core" processorArchitecture="amd64"
 			publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -38,6 +35,10 @@
 		<component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64"
 			publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<UserAccounts>
+				<AdministratorPassword>
+					<Value>Labmanager2023!!</Value>
+					<PlainText>false</PlainText>
+				</AdministratorPassword>
 				<LocalAccounts>
 					<LocalAccount wcm:action="add">
 						<Name>labmanager</Name>
@@ -47,21 +48,12 @@
 							<PlainText>true</PlainText>
 						</Password>
 					</LocalAccount>
-					<LocalAccount wcm:action="add">
-						<Name>User</Name>
-						<Group>Users</Group>
-						<Password>
-							<Value>password</Value>
-							<PlainText>true</PlainText>
-						</Password>
-					</LocalAccount>
 				</LocalAccounts>
 			</UserAccounts>
-			<AutoLogon></AutoLogon>
 			<OOBE>
 				<ProtectYourPC>3</ProtectYourPC>
 				<HideEULAPage>true</HideEULAPage>
-				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+				<HideLocalAccountScreen>false</HideLocalAccountScreen>
 			</OOBE>
 		</component>
 	</settings>
