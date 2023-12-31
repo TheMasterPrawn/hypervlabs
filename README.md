@@ -58,3 +58,8 @@ reg add HKLM\System\Setup\status\SysprepStatus /v GeneralizationState /t REG_DWO
 reg add HKLM\System\Setup\status\SysprepStatus /v CleanupState        /t REG_DWORD /d 2 /f
 ```
 
+# licence 
+
+Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform
+
+%windir%\system32\sysprep

@@ -13,8 +13,9 @@ function Get-Packages {
     choco install firefox -y
     
     choco install speedtest -y
+    #choco install notepadplusplus -y
     choco install googlechrome -y
-    choco install winaero-tweaker -y
+    choco install winaero-tweaker -y --ignore-checksum -y --force
     choco install fiddler -y
 
     choco install sysinternals --params "/InstallDir:C:\tools" --ignore-checksum -y --force
