@@ -4,12 +4,12 @@ function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
 function Get-Configs
 {
     $configFile = Join-Path (Get-ScriptDirectory) 'configs.json'
-    $config = Get-Content -Path $configFile | ConvertFrom-Json
-    return $config
+    $configs = Get-Content -Path $configFile | ConvertFrom-Json
+    return $configs
 }
 
-$config = Get-Configs
-New-Item -ItemType Directory -path $config.vmloc -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -path $config.medialoc -ErrorAction SilentlyContinue
-New-Item -ItemType Directory -path $config.vhdloc -ErrorAction SilentlyContinue
+$configs = Get-Configs
+New-Item -ItemType Directory -path $configs.vmloc -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -path $configs.medialoc -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -path $configs.vhdloc -ErrorAction SilentlyContinue
 
