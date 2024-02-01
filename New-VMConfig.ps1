@@ -1,12 +1,12 @@
 [CmdletBinding()]
 param (
-    [Parameter()][string]$hyperVMachineName = "Win10Pro1",
+    [Parameter()][string]$hyperVMachineName = "Win 10 VPN Test",
     [Parameter()][string]$MemoryStartupBytes = "4GB",
     [Parameter()][string]$VHDSizeBytes = "80GB",
     [Parameter()][string]$SwitchName = "LAB",
     [Parameter()][int]$Generation = 2,
     [Parameter()][int]$Processors = 4,
-    [Parameter()][string]$MediaPath = "C:\vms\media\Windows10pro.iso"
+    [Parameter()][string]$MediaPath = "C:\vms\media\insider\Windows10_InsiderPreview_Client_x64_en-gb_19045.1826.iso"
 )
 function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
 
@@ -53,3 +53,11 @@ $owner = Get-HgsGuardian "UntrustedGuardian"
 $kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
 Set-VMKeyProtector -VMName $hyperVMachineName -KeyProtector $kp.RawData
 Enable-VMTPM -VMName $hyperVMachineName
+
+$old_boot_order = Get-VMFirmware -VMName $hyperVMachineName | Select-Object -ExpandProperty BootOrder
+
+$new_boot_order = $old_boot_order | Where-Object { $_.BootType -ne "Network" }
+
+Set-VMFirmware -VMName $hyperVMachineName -BootOrder $new_boot_order
+
+Get-VMFirmware -VMName $hyperVMachineName | Select-Object -ExpandProperty BootOrder
