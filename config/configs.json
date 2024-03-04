@@ -1,5 +1,5 @@
 {
-    "vmloc": "c:\\vms",
+    "vmloc": "c:\\vms\\Virtual Machines",
     "medialoc": "c:\\vms\\media",
     "vhdloc": "c:\\vms\\vhd",
     "VMSwitch": "LABLAN",
