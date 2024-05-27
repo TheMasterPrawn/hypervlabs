@@ -1,12 +1,12 @@
 [CmdletBinding()]
 param (
-    [Parameter()][string]$hyperVMachineName = "Win 10 VPN Test",
-    [Parameter()][string]$MemoryStartupBytes = "4GB",
+    [Parameter()][string]$hyperVMachineName = "Win 11 Enterprise - LAUNCHCDM=1",
+    [Parameter()][string]$MemoryStartupBytes = "8GB",
     [Parameter()][string]$VHDSizeBytes = "80GB",
     [Parameter()][string]$SwitchName = "LAB",
     [Parameter()][int]$Generation = 2,
     [Parameter()][int]$Processors = 4,
-    [Parameter()][string]$MediaPath = "C:\vms\media\insider\Windows10_InsiderPreview_Client_x64_en-gb_19045.1826.iso"
+    [Parameter()][string]$MediaPath = "C:\vms\media\Win11_23H2_EnglishInternational_x64.iso"
 )
 function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
 
